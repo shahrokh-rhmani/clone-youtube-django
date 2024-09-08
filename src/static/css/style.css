@@ -1,0 +1,461 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+body{
+    background-color: #f1f1f1 !important;
+}
+.navigation-bar{
+    position: fixed;
+    width: 100%;
+    z-index: 99;
+}
+
+.sidebar{
+    width: 250px;
+    position: fixed;
+    height: 100%;
+    left: 0;
+    top: 50px;
+    background-color: #fff;
+    overflow-y: auto ;
+    padding-top: 20px;
+    padding-bottom: 40px;
+    
+}
+
+.nav-link span{
+        padding: 0 15px;
+        vertical-align: bottom;
+        white-space: nowrap;
+        font-size: 15px;
+}
+.page-content{
+    margin-left: 250px;
+    position: relative;
+}
+.nav-footer{
+    padding-right: 30px;
+    padding-left: 1rem;
+
+}
+.nav-footer .nav-link{
+    padding: 0;
+    padding-right: 5px;
+    font-size: 12px;
+    font-weight: 600;
+}
+
+/* chip */
+.chip-container{
+    background-color: #fff;
+    border-top: 1px solid rgba(0, 0, 0, 0.05);
+    border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+    padding: 10px 15px;
+    position: sticky;
+    top: 49px;
+    z-index: 99 ;
+    align-items: center;
+    text-align: center;
+    
+    
+}
+
+.chip-container .chip{
+    width: 80% !important;
+    display: inline-block;
+    padding: 5px 10px;
+    font-size: 12px;
+    background-color: rgba(0, 0, 0, 0.05);
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    white-space: nowrap !important;
+    border-radius: 25px;
+
+    margin-right: 15px;
+    
+}
+
+.chip-container  .active{
+    width: 50% !important;
+    background: #000;
+    color: #fff;
+    
+}
+
+
+
+.card-video .card-video-details img{
+    border-radius: 50%;
+    
+}
+.card-video h4{
+    font-size: 22px;
+    font-weight: bold;
+    color: #000;
+    
+}
+.card-video div{
+    color: gray;
+    font-size: 13px;
+}
+a{
+    display: block;
+    text-decoration: none;
+}
+.margin-row{
+    margin-top: 65px !important;
+}
+
+.avatar-img{
+    width: 30px;
+    border-radius: 50%;
+}
+
+/* detail */
+
+.card-video h3{
+    font-size: 22px;
+    font-weight: bold;
+    color: #000;
+    
+}
+
+a{
+    text-decoration: none !important;
+    color: #5a5a5a !important;
+}
+
+.vid-description{
+    padding-left: 55px;
+    margin: 15px 0;
+}
+.vid-description p{
+    font-size: 14px;
+    margin-bottom: 5px;
+    color: #5a5a5a;
+}
+.comments h4{
+    font-size: 14px;
+    color: #5a5a5a;
+    margin-top: 15px;
+}
+
+.add-comment{
+    display: flex;
+    align-items: center;
+    margin: 30px 0;
+    
+}
+
+.add-comment img{
+    width: 35px;
+    border-radius: 50%;
+    margin-right: 15px;
+    margin-bottom: 50px;
+}
+
+form {
+    width: 100%;
+}
+
+.add-comment  input{
+    border: 0;
+    outline: 0;
+    border-bottom: 1px solid #ccc;
+    width: 100%;
+    padding-top: 10px;
+    background: transparent;
+    
+}
+
+
+
+.comment-buttons {
+    display: none; 
+    margin-top: 15px;
+}
+
+.comment-buttons button {
+    padding: 8px 16px;
+    background-color: #1877f2; /* YouTube blue */
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    margin-right: 5px;
+    
+}
+
+.comment-buttons button:hover {
+    background-color: #0e5cad; /* Darker shade for hover */
+}
+
+
+
+.old-comment{
+    display: flex;
+    align-items: center;
+    margin: 20px 0;
+}
+
+.old-comment img{
+    width: 35px;
+    border-radius: 50%;
+    margin-right: 15px;
+    margin-bottom: 50px;
+}
+.old-comment h3{
+    font-size: 14px;
+    margin-bottom: 2px;
+}
+.old-comment h3 span{
+    font-size: 12px;
+    color: #5a5a5a;
+    font-weight: 500;
+    margin-left: 8px;
+}
+.old-comment .comment-action{
+    display: flex;
+    align-items: center;
+    margin: 8px 0;
+    font-size: 14px;
+}
+.old-comment .comment-action img{
+    border-radius: 0;
+    width: 20px;
+    margin-right: 5px;
+}
+.old-comment .comment-action span{
+    margin-right: 20px;
+    color: #5a5a5a;
+}
+.old-comment .comment-action a{
+    color: #0000ff !important;
+}
+
+.publisher{
+    display: flex;
+    align-items: center;
+    margin-top: 20px;
+}
+.publisher img{
+    width: 40px;
+    border-radius: 50%;
+    margin-right: 15px;
+}
+
+.publisher div{
+    flex: 1;
+    line-height: 18px;
+}
+.publisher div p{
+    color: #000;
+    font-weight: 600;
+    font-size: 18px;
+}
+.publisher div span{
+    font-size: 13px;
+    color: #5a5a5a;
+}
+
+.button-container {
+    margin-left: 600px; /* Pushes the button container to the far right */
+}
+
+.publisher button{
+    background: red;
+    color: #fff;
+    padding: 8px 30px;
+    border: 0;
+    outline: 0;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.play-video-info{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    margin-top: 10px;
+    font-size: 14px;
+    color: #5a5a5a;
+}
+.play-video-info a{
+    display: inline-flex;
+    align-items: center;
+    margin-left: 15px;
+    cursor: pointer;
+}
+
+
+
+.play-video-info a img{
+    width: 20px;
+    margin-right: 8px;
+}
+.play-video hr{
+    /* border: 0; */
+    height: 1px;
+    background: #ccc;
+    margin: 10px 0;
+}
+
+/*  channel profile */
+
+.img-profile img{
+    width: 250px;
+    border-radius: 50%;
+}
+
+
+
+
+/*  end channel profile */
+
+.replies{
+    display: flex;
+    align-items: center;
+    margin: 30px 0;
+
+    margin-left: 30px;
+    display: none;
+}
+
+.replies img{
+    width: 35px;
+    border-radius: 50%;
+    margin-right: 15px;
+}
+
+.replies  input{
+    border: 0;
+    outline: 0;
+    border-bottom: 1px solid #ccc;
+    width: 100%;
+    padding-top: 10px;
+    background: transparent;
+    
+}
+
+.comment-child{
+    display: flex;
+    align-items: center;
+    margin: 30px 0;
+
+    margin-left: 30px;
+}
+
+.replies-btn{
+    margin-top: 15px;
+}
+
+.replies-btn button{
+    padding: 8px 16px;
+    background-color: #1877f2; /* YouTube blue */
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    margin-right: 5px;
+}
+
+.like-icon{
+    transform: rotate(180deg);
+    pointer-events: none;
+    display: inherit;
+    width: 100%;
+    height: 100%;
+    background-color: black;
+}
+
+
+
+/* Share dialog */
+
+.share-dialog {
+    display: none; 
+    position: fixed; 
+    z-index: 1; 
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%; 
+    overflow: auto; 
+    background-color: rgb(0,0,0); 
+    background-color: rgba(0,0,0,0.4); 
+}
+
+.share-dialog-content {
+    background-color: #fefefe;
+    margin: 15% auto; 
+    padding: 20px;
+    border: 1px solid #888;
+    width: 80%; 
+    max-width: 500px;
+}
+
+.close {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.share-options {
+    display: flex;
+    gap: 10px;
+    justify-content: space-around;
+    margin-bottom: 20px;
+}
+
+.share-options a {
+    width: 80px;
+    /* height: 40px; */
+}
+
+.copy-link {
+    display: flex;
+    gap: 10px;
+}
+
+.copy-link input {
+    flex: 1;
+    padding: 10px;
+    font-size: 16px;
+}
+
+.copy-link button {
+    padding: 10px 20px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    cursor: pointer;
+}
+
+.copy-link button:hover {
+    background-color: #45a049;
+}
+
+/* Share dialog save */
+.share-options ul {
+    list-style-type: none; /* Remove bullet points */
+    padding: 0; /* Remove padding */
+}
+
+.share-options li {
+    margin: 10px 0; /* Add some space between items */
+}
+
+.share-options h3 {
+    margin-bottom: 10px; /* Add some space below the heading */
+}
+
