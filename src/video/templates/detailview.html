@@ -1,0 +1,380 @@
+{% extends "_base.html" %}
+{% load static %}
+
+{% block content %}
+
+<div class="container-fluid p-5 py-3 search-results-container">
+    <div class="row margin-row">
+        <div class="col-8">
+            <div class="card card-video border-0 bg-transparent mb-4 play-video">
+                <img src="{% static 'images/thumbnail.jpg' %}" class="img-fluid" alt="">
+                <h3 class="mt-3">{{ video.title }}</h3>
+                <div class="play-video-info">
+                    <p>1235 views 2 days ago</p>
+                    <div>
+                        <!-- like -->
+                        <a href="#">
+                            {% if user_liked %}
+                            <svg style="transform: rotate(180deg); fill: red;" xmlns="http://www.w3.org/2000/svg"
+                                height="24" viewBox="0 0 24 24" width="24" focusable="false"
+                                style="pointer-events: none; display: inherit; width: 100%; height: 100%;">
+                                <path
+                                    d="M17,4h-1H6.57C5.5,4,4.59,4.67,4.38,5.61l-1.34,6C2.77,12.85,3.82,14,5.23,14h4.23l-1.52,4.94C7.62,19.97,8.46,21,9.62,21 c0.58,0,1.14-0.24,1.52-0.65L17,14h4V4H17z M10.4,19.67C10.21,19.88,9.92,20,9.62,20c-0.26,0-0.5-0.11-0.63-0.3 c-0.07-0.1-0.15-0.26-0.09-0.47l1.52-4.94l0.4-1.29H9.46H5.23c-0.41,0-0.8-0.17-1.03-0.46c-0.12-0.15-0.25-0.4-0.18-0.72l1.34-6 C5.46,5.35,5.97,5,6.57,5H16v8.61L10.4,19.67z M20,13h-3V5h3V13z">
+                                </path>
+                            </svg>
+                            {% else %}
+                            <svg style="transform: rotate(180deg);" xmlns="http://www.w3.org/2000/svg" height="24"
+                                viewBox="0 0 24 24" width="24" focusable="false"
+                                style="pointer-events: none; display: inherit; width: 100%; height: 100%;">
+                                <path
+                                    d="M17,4h-1H6.57C5.5,4,4.59,4.67,4.38,5.61l-1.34,6C2.77,12.85,3.82,14,5.23,14h4.23l-1.52,4.94C7.62,19.97,8.46,21,9.62,21 c0.58,0,1.14-0.24,1.52-0.65L17,14h4V4H17z M10.4,19.67C10.21,19.88,9.92,20,9.62,20c-0.26,0-0.5-0.11-0.63-0.3 c-0.07-0.1-0.15-0.26-0.09-0.47l1.52-4.94l0.4-1.29H9.46H5.23c-0.41,0-0.8-0.17-1.03-0.46c-0.12-0.15-0.25-0.4-0.18-0.72l1.34-6 C5.46,5.35,5.97,5,6.57,5H16v8.61L10.4,19.67z M20,13h-3V5h3V13z">
+                                </path>
+                            </svg>
+                            {% endif %}
+                            {{video.count_like}}
+                        </a>
+                        <!--  end like -->
+
+                        <!-- dislike -->
+                        <a href="#">
+                            {% if user_disliked %}
+                            <svg style="fill: red;" xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 0 24 24"
+                                width="24" focusable="false"
+                                style="pointer-events: none; display: inherit; width: 100%; height: 100%;">
+                                <path
+                                    d="M17,4h-1H6.57C5.5,4,4.59,4.67,4.38,5.61l-1.34,6C2.77,12.85,3.82,14,5.23,14h4.23l-1.52,4.94C7.62,19.97,8.46,21,9.62,21 c0.58,0,1.14-0.24,1.52-0.65L17,14h4V4H17z M10.4,19.67C10.21,19.88,9.92,20,9.62,20c-0.26,0-0.5-0.11-0.63-0.3 c-0.07-0.1-0.15-0.26-0.09-0.47l1.52-4.94l0.4-1.29H9.46H5.23c-0.41,0-0.8-0.17-1.03-0.46c-0.12-0.15-0.25-0.4-0.18-0.72l1.34-6 C5.46,5.35,5.97,5,6.57,5H16v8.61L10.4,19.67z M20,13h-3V5h3V13z">
+                                </path>
+                            </svg>
+                            {% else %}
+                            <svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 0 24 24" width="24"
+                                focusable="false"
+                                style="pointer-events: none; display: inherit; width: 100%; height: 100%;">
+                                <path
+                                    d="M17,4h-1H6.57C5.5,4,4.59,4.67,4.38,5.61l-1.34,6C2.77,12.85,3.82,14,5.23,14h4.23l-1.52,4.94C7.62,19.97,8.46,21,9.62,21 c0.58,0,1.14-0.24,1.52-0.65L17,14h4V4H17z M10.4,19.67C10.21,19.88,9.92,20,9.62,20c-0.26,0-0.5-0.11-0.63-0.3 c-0.07-0.1-0.15-0.26-0.09-0.47l1.52-4.94l0.4-1.29H9.46H5.23c-0.41,0-0.8-0.17-1.03-0.46c-0.12-0.15-0.25-0.4-0.18-0.72l1.34-6 C5.46,5.35,5.97,5,6.57,5H16v8.61L10.4,19.67z M20,13h-3V5h3V13z">
+                                </path>
+                            </svg>
+                            {% endif %}
+                            {{video.count_dislike}}
+                        </a>
+                        <!--  end dislike -->
+
+                        <!-- share -->
+                        <a id="shareBtn">
+                            <svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 0 24 24" width="24"
+                                focusable="false"
+                                style="pointer-events: none; display: inherit; width: 100%; height: 100%;">
+                                <path
+                                    d="M15 5.63 20.66 12 15 18.37V14h-1c-3.96 0-7.14 1-9.75 3.09 1.84-4.07 5.11-6.4 9.89-7.1l.86-.13V5.63M14 3v6C6.22 10.13 3.11 15.33 2 21c2.78-3.97 6.44-6 12-6v6l8-9-8-9z">
+                                </path>
+                            </svg>
+                            Share
+                        </a>
+                        <!-- end share -->
+
+                        <a id="saveBtn">
+                            <svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 0 24 24" width="24"
+                                focusable="false"
+                                style="pointer-events: none; display: inherit; width: 100%; height: 100%;">
+                                <path
+                                    d="M22 13h-4v4h-2v-4h-4v-2h4V7h2v4h4v2zm-8-6H2v1h12V7zM2 12h8v-1H2v1zm0 4h8v-1H2v1z">
+                                </path>
+                            </svg>
+                            Save
+                        </a>
+                    </div>
+                </div>
+
+
+                <!-- Share dialog box -->
+                <div id="shareDialog" class="share-dialog">
+                    <div class="share-dialog-content">
+                        <span class="close close-share">&times;</span>
+                        <h2>Share this video</h2>
+                        <div class="share-options">
+                            <a href="" target="_blank">
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 36 36" focusable="false"
+                                    style="pointer-events: none; display: inherit; width: 100%; height: 100%;"
+                                    aria-hidden="true">
+                                    <circle cx="18" cy="18" r="17.5" stroke="#E7E7E7" fill="#F4F4F4" stroke-width=".5">
+                                    </circle>
+                                    <path
+                                        d="m21.41,23.29l-0.71,-0.71l4.59,-4.58l-4.59,-4.59l0.71,-0.71l5.3,5.3l-5.3,5.29zm-6.12,-0.7l-4.58,-4.59l4.59,-4.59l-0.71,-0.7l-5.3,5.29l5.29,5.29l0.71,-0.7z"
+                                        fill="#606060"></path>
+                                </svg>
+                            </a>
+                            <a href="#" target="_blank">
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 60 60" focusable="false"
+                                    style="pointer-events: none; display: inherit; width: 100%; height: 100%;"
+                                    aria-hidden="true">
+                                    <g fill="none" fill-rule="evenodd">
+                                        <circle cx="30" cy="30" r="30" fill="#25D366"></circle>
+                                        <path
+                                            d="M39.7746 19.3513C37.0512 16.5467 33.42 15 29.5578 15C21.6022 15 15.1155 21.6629 15.1155 29.8725C15.1155 32.4901 15.7758 35.0567 17.0467 37.3003L15 45L22.6585 42.9263C24.7712 44.1161 27.148 44.728 29.5578 44.728C37.5134 44.728 44 38.0652 44 29.8555C44 25.8952 42.498 22.1558 39.7746 19.3513ZM29.5578 42.2295C27.3956 42.2295 25.2829 41.6346 23.4508 40.5127L23.0051 40.2408L18.4661 41.4646L19.671 36.9093L19.3904 36.4334C18.1855 34.4618 17.5583 32.1841 17.5583 29.8555C17.5583 23.0397 22.9556 17.4986 29.5743 17.4986C32.7763 17.4986 35.7968 18.7904 38.0581 21.119C40.3193 23.4476 41.5737 26.5581 41.5737 29.8555C41.5572 36.6884 36.1764 42.2295 29.5578 42.2295ZM36.1434 32.966C35.7803 32.779 34.0142 31.8782 33.6841 31.7592C33.354 31.6402 33.1064 31.5722 32.8754 31.9462C32.6278 32.3201 31.9511 33.153 31.7365 33.4079C31.5219 33.6629 31.3238 33.6799 30.9607 33.4929C30.5976 33.306 29.4422 32.915 28.0558 31.6572C26.9829 30.6714 26.2567 29.4476 26.0421 29.0907C25.8275 28.7167 26.0256 28.5127 26.2072 28.3258C26.3722 28.1558 26.5703 27.8839 26.7518 27.6799C26.9334 27.4589 26.9994 27.3059 27.115 27.068C27.2305 26.813 27.181 26.6091 27.082 26.4221C26.9994 26.2351 26.2732 24.3994 25.9761 23.6686C25.679 22.9377 25.3819 23.0397 25.1673 23.0227C24.9528 23.0057 24.7217 23.0057 24.4741 23.0057C24.2265 23.0057 23.8469 23.0907 23.5168 23.4646C23.1867 23.8385 22.2459 24.7394 22.2459 26.5581C22.2459 28.3938 23.5333 30.1445 23.7149 30.3994C23.8964 30.6544 26.2567 34.3938 29.8714 36.0085C30.7297 36.3994 31.4064 36.6204 31.9345 36.7904C32.7928 37.0793 33.5851 37.0283 34.2123 36.9433C34.9055 36.8414 36.3415 36.0425 36.6551 35.1756C36.9522 34.3088 36.9522 33.5609 36.8697 33.4079C36.7541 33.255 36.5065 33.153 36.1434 32.966Z"
+                                            fill="white"></path>
+                                    </g>
+                                </svg>
+                            </a>
+                            <a href="" target="_blank">
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 60 60" focusable="false"
+                                    style="pointer-events: none; display: inherit; width: 100%; height: 100%;"
+                                    aria-hidden="true">
+                                    <g fill="none" fill-rule="evenodd">
+                                        <path
+                                            d="M28.4863253 59.9692983c-6.6364044-.569063-11.5630204-2.3269561-16.3219736-5.8239327C4.44376366 48.4721168 3e-7 39.6467924 3e-7 29.9869344c0-14.8753747 10.506778-27.18854591 25.2744118-29.61975392 6.0281072-.9924119 12.7038532.04926445 18.2879399 2.85362966C57.1386273 10.0389054 63.3436516 25.7618627 58.2050229 40.3239688 54.677067 50.3216743 45.4153135 57.9417536 34.81395 59.5689067c-2.0856252.3201125-5.0651487.5086456-6.3276247.4003916z"
+                                            fill="#3B5998" fill-rule="nonzero"></path>
+                                        <path
+                                            d="M25.7305108 45h5.4583577V30.0073333h4.0947673l.8098295-4.6846666h-4.9045968V21.928c0-1.0943333.7076019-2.2433333 1.7188899-2.2433333h2.7874519V15h-3.4161354v.021c-5.3451414.194-6.4433395 3.2896667-6.5385744 6.5413333h-.0099897v3.7603334H23v4.6846666h2.7305108V45z"
+                                            fill="#FFF"></path>
+                                    </g>
+                                </svg>
+                            </a>
+                            <a
+                                href="mailto:?subject=I wanted you to see this video&body={{ request.build_absolute_uri }}">
+                                <svg width="192" height="192" viewBox="0 0 192 192" fill="none"
+                                    xmlns="http://www.w3.org/2000/svg" focusable="false"
+                                    style="pointer-events: none; display: inherit; width: 100%; height: 100%;"
+                                    aria-hidden="true">
+                                    <rect width="192" height="192" rx="96" fill="black"></rect>
+                                    <path fill-rule="evenodd" clip-rule="evenodd"
+                                        d="M42 47H76L100 78.5L127 47H144L107.5 88.5L150 145H117L91 111L61 145H44L83 100.5L42 47ZM62 57H71.5L130.5 135H121.5L62 57Z"
+                                        fill="white"></path>
+                                </svg>
+                            </a>
+                            <!-- Add more share options if needed -->
+                        </div>
+                        <div class="copy-link">
+                            <input type="text" value="{{ request.build_absolute_uri }}" id="shareLink" readonly>
+                            <button onclick="copyLink()">Copy Link</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- save box -->
+
+                <div id="saveDialog" class="share-dialog">
+                    <div class="share-dialog-content">
+                        <span class="close close-save">&times;</span>
+                        <h2>Save this video</h2>
+                        <div class="share-options">
+                            <ul>
+                                <li>
+                                    <label>
+                                        <input type="checkbox" id="watch-later-checkbox" data-video-id="{{ video.id }}"
+                                            data-ch-name="{{ video.channel }}" {% if video.id in watch_later_videos %}
+                                            checked {% endif %}>
+                                        Watch Later
+                                    </label>
+                                </li>
+                                <li>
+                                    <form id="save-to-playlist-form">
+                                        {% csrf_token %}
+                                        <ul>
+                                            {% for playlist in playlists %}
+                                            <li>
+                                                <label>
+                                                    <input type="checkbox" class="playlist-checkbox"
+                                                        value="{{ playlist.id }}" data-video-id="{{ video.id }}"
+                                                        data-ch-name="{{ video.channel }}" {% if playlist.id in
+                                                        video_playlists %} checked {% endif %}>
+                                                    {{ playlist.title }}
+                                                </label>
+                                            </li>
+                                            {% endfor %}
+                                        </ul>
+                                    </form>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+
+
+                <hr>
+
+
+                <div class="publisher">
+                    <img src="{% static 'images/avatar.jpg' %}" width="40px" alt="">
+                    <div>
+                        <p>Easy Tutorials</p>
+                        <span>500k Subscribers</span>
+                    </div>
+                    {% if user.is_authenticated %}
+                    <div class="button-container">
+                        {% if not subscribed %}
+                        <div class="">
+                            <form action="#" method="POST">
+                                {% csrf_token %}
+                                <input type="hidden" name="redirect_to" value="detailview">
+                                <input type="hidden" name="video_id" value="{{ video.id }}">
+                                <button type="submit">Subscribe</button>
+                            </form>
+                        </div>
+                        {% else %}
+                        <div class="btn-profile">
+
+                            <form action="{% url 'unsubscribe' video.channel %}" method="POST">
+                                {% csrf_token %}
+                                <input type="hidden" name="redirect_to" value="detailview">
+                                <input type="hidden" name="video_id" value="{{ video.id }}">
+                                <button type="submit">Unsubscribe</button>
+                            </form>
+                        </div>
+                        {% endif %}
+                    </div>
+                    {% endif %}
+                </div>
+
+                <div class="vid-description">
+                    <p>Channel that makes learning easy</p>
+                    <p>Subscribe Easy Tutorials to watch more tutorials on web development</p>
+                    <hr>
+                    <div class="comments">
+                        <h4>64 comments</h4>
+                    </div>
+                    <!-- 1_form add comment  -->
+                    <div class="add-comment">
+                        <img src="{% static 'images/avatar.jpg' %}" alt="">
+
+                        <form id="commentForm" action="/comment" method="POST">
+                            {% csrf_token %}
+                            {{ form.text }}
+                            <input type='hidden' name='video' value='{{ video.id }}'>
+
+
+                            <div class="comment-buttons">
+                                <button type="submit" class="comment-btn">Comment</button>
+                                <button class="cancel-btn">Cancel</button>
+                            </div>
+                        </form>
+                    </div>
+                    <!-- 2_show comment parent  -->
+                    <div id="oldcomment">
+                        {% for comment in comments %}
+                        {% if comment.is_parent %}
+                        <div class="old-comment">
+                            <img src="{% static 'images/avatar.jpg' %}" alt="">
+                            <div>
+                                <h3>{{ comment.user }}<span>{{ comment.datetime }}</span>ss</h3>
+                                <p>{{ comment.text }}</p>
+                                <div class="comment-action">
+                                    <a href=""><svg style="transform: rotate(180deg);"
+                                            xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 0 24 24"
+                                            width="24" focusable="false"
+                                            style="pointer-events: none; display: inherit; width: 100%; height: 100%;">
+                                            <path
+                                                d="M17,4h-1H6.57C5.5,4,4.59,4.67,4.38,5.61l-1.34,6C2.77,12.85,3.82,14,5.23,14h4.23l-1.52,4.94C7.62,19.97,8.46,21,9.62,21 c0.58,0,1.14-0.24,1.52-0.65L17,14h4V4H17z M10.4,19.67C10.21,19.88,9.92,20,9.62,20c-0.26,0-0.5-0.11-0.63-0.3 c-0.07-0.1-0.15-0.26-0.09-0.47l1.52-4.94l0.4-1.29H9.46H5.23c-0.41,0-0.8-0.17-1.03-0.46c-0.12-0.15-0.25-0.4-0.18-0.72l1.34-6 C5.46,5.35,5.97,5,6.57,5H16v8.61L10.4,19.67z M20,13h-3V5h3V13z">
+                                            </path>
+                                        </svg></a>
+                                    <span>109</span>
+                                    <a href=""><svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 0 24 24"
+                                            width="24" focusable="false"
+                                            style="pointer-events: none; display: inherit; width: 100%; height: 100%;">
+                                            <path
+                                                d="M17,4h-1H6.57C5.5,4,4.59,4.67,4.38,5.61l-1.34,6C2.77,12.85,3.82,14,5.23,14h4.23l-1.52,4.94C7.62,19.97,8.46,21,9.62,21 c0.58,0,1.14-0.24,1.52-0.65L17,14h4V4H17z M10.4,19.67C10.21,19.88,9.92,20,9.62,20c-0.26,0-0.5-0.11-0.63-0.3 c-0.07-0.1-0.15-0.26-0.09-0.47l1.52-4.94l0.4-1.29H9.46H5.23c-0.41,0-0.8-0.17-1.03-0.46c-0.12-0.15-0.25-0.4-0.18-0.72l1.34-6 C5.46,5.35,5.97,5,6.57,5H16v8.61L10.4,19.67z M20,13h-3V5h3V13z">
+                                            </path>
+                                        </svg></a>
+                                    <span>14</span>
+                                    <a href=""><span class="replay">REPLAY</span></a>
+                                    <a href="">ALL replies</a>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- 3_form comment child -->
+                        <div class="replies">
+                            <img src="{% static 'images/avatar.jpg' %}" alt="">
+
+                            <form class="commentFormChild" action="/comment" method="POST">
+                                {% csrf_token %}
+                                {{form.text}}
+                                <input type='hidden' name='video' value='{{ video.id }}'>
+                                <input type="hidden" value="{{ comment.id }}" name="parent">
+
+                                <div class="replies-btn">
+                                    <button type="submit" class="comment-btn">Replay</button>
+                                    <button class="cancel-replay">Cancel</button>
+                                </div>
+                            </form>
+
+                        </div>
+                        {% endif %}
+                        <!-- 4_ show child -->
+                        <div id="oldcommentchild">
+                            {% for replies in comment.children %}
+
+                            <div class="old-comment comment-child">
+                                <img src="{% static 'images/avatar.jpg' %}" alt="">
+                                <div>
+                                    <h3>{{ comment.user }}<span>{{ comment.datetime }}</span></h3>
+                                    <p>{{ replies.text }}</p>
+                                </div>
+                            </div>
+                            {% endfor %}
+                        </div>
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-4">
+            <div class="card-video-details d-flex mt-2">
+                <div class="me-2"><img src="{% static 'images/thumbnail.jpg' %}" width="250px" alt=""></div>
+                <div>
+                    <div>Lorem-ipsum</div>
+                    <div>12K views 1 Months ago</div>
+                </div>
+            </div>
+            <div class="card-video-details d-flex mt-2">
+                <div class="me-2"><img src="{% static 'images/thumbnail.jpg' %}" width="250px" alt=""></div>
+                <div>
+
+                    <div>Lorem-ipsum</div>
+                    <div>12K views 1 Months ago</div>
+                </div>
+            </div>
+            <div class="card-video-details d-flex mt-2">
+                <div class="me-2"><img src="{% static 'images/thumbnail.jpg' %}" width="250px" alt=""></div>
+                <div>
+
+                    <div>Lorem-ipsum</div>
+                    <div>12K views 1 Months ago</div>
+                </div>
+            </div>
+            <div class="card-video-details d-flex mt-2">
+                <div class="me-2"><img src="{% static 'images/thumbnail.jpg' %}" width="250px" alt=""></div>
+                <div>
+
+                    <div>Lorem-ipsum</div>
+                    <div>12K views 1 Months ago</div>
+                </div>
+            </div>
+            <div class="card-video-details d-flex mt-2">
+                <div class="me-2"><img src="{% static 'images/thumbnail.jpg' %}" width="250px" alt=""></div>
+                <div>
+
+                    <div>Lorem-ipsum</div>
+                    <div>12K views 1 Months ago</div>
+                </div>
+            </div>
+            <div class="card-video-details d-flex mt-2">
+                <div class="me-2"><img src="{% static 'images/thumbnail.jpg' %}" width="250px" alt=""></div>
+                <div>
+
+                    <div>Lorem-ipsum</div>
+                    <div>12K views 1 Months ago</div>
+                </div>
+            </div>
+            <div class="card-video-details d-flex mt-2">
+                <div class="me-2"><img src="{% static 'images/thumbnail.jpg' %}" width="250px" alt=""></div>
+                <div>
+
+                    <div>Lorem-ipsum</div>
+                    <div>12K views 1 Months ago</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+</div>
+{% endblock %}
