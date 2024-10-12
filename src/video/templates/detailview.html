@@ -13,7 +13,7 @@
                     <p>1235 views 2 days ago</p>
                     <div>
                         <!-- like -->
-                        <a href="#">
+                        <a href="{% url 'likeview' video.id %}">
                             {% if user_liked %}
                             <svg style="transform: rotate(180deg); fill: red;" xmlns="http://www.w3.org/2000/svg"
                                 height="24" viewBox="0 0 24 24" width="24" focusable="false"
@@ -36,7 +36,7 @@
                         <!--  end like -->
 
                         <!-- dislike -->
-                        <a href="#">
+                        <a href="{% url 'dislikeview' video.id %}">
                             {% if user_disliked %}
                             <svg style="fill: red;" xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 0 24 24"
                                 width="24" focusable="false"
