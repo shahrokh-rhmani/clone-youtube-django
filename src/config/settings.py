@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     'studio',
     'video',
     'interaction',
+    'playlist',
 ]
 
 MIDDLEWARE = [
