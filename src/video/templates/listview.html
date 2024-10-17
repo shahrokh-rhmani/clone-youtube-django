@@ -1,1 +1,30 @@
 {% extends "_base.html" %}
+{% load static %}
+
+
+
+{% block content %}
+{% for video in most_recent_videos %}
+<div class="col-12 col-md-6 col-lg-4 col-xl-3">
+    <a href="{% url 'detailview' ch_name=video.channel video_id=video.id %}" class="card card-video border-0 bg-transparent mb-4">
+        {% if video.img %}
+            <img src="{{ video.img.url }}" class="img-fluid" alt="{{ video.title }}">
+        {% else %}
+            <img src="{% static 'images/thumbnail.jpg' %}" class="img-fluid" alt="{{ video.title }}">
+        {% endif %}
+        <div class="card-video-details d-flex mt-2">
+            <div class="me-2"><img src="{% static 'images/avatar.jpg' %}" width="40px" alt=""></div>
+            <div>
+                <h4>{{ video.title }}</h4>
+                <div>Lorem-ipsum</div>
+                <div>{{ video.number_of_views }} views 1 month ago</div>
+            </div>
+        </div>
+    </a>
+</div>
+{% endfor %}
+
+
+
+
+{% endblock %}
