@@ -174,8 +174,8 @@
                                                 <label>
                                                     <input type="checkbox" class="playlist-checkbox"
                                                         value="{{ playlist.id }}" data-video-id="{{ video.id }}"
-                                                        data-ch-name="{{ video.channel }}"
-                                                         {% if playlist.id in video_playlists %}
+                                                        
+                                                         {% if playlist.id in playlistitem %}
                                                          checked 
                                                          {% endif %}>
                                                     {{ playlist.title }}
