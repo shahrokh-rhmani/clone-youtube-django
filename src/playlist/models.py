@@ -1,10 +1,10 @@
 from django.db import models
-from django.contrib.auth.models import User
+from studio.models import Channel
 from video.models import Video
 
 
 class Playlist(models.Model):
-    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    channel = models.ForeignKey(Channel, on_delete=models.CASCADE, null=True)
     title = models.CharField(max_length=255)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)

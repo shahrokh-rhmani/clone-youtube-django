@@ -24,6 +24,7 @@ urlpatterns = [
     path('', include('studio.urls')),
     path('', include('video.urls')),
     path('', include('interaction.urls')),
+    path('', include('playlist.urls')),
 ]
 
 if settings.DEBUG:

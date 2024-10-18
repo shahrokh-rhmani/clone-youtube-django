@@ -1,0 +1,17 @@
+{% extends '_base.html' %}
+
+{% block content %}
+<h2>Your Playlists</h2>
+{% if playlists %}
+    <ul>
+        {% for playlist in playlists %}
+        <li>
+            <a href="{% url 'playlist_detail' playlist.id %}">{{ playlist.title }}</a>
+            <span>(Created on: {{ playlist.created_at|date:"F j, Y" }})</span>
+        </li>
+        {% endfor %}
+    </ul>
+{% else %}
+    <p>You have no playlists. <a href="#">Create a new playlist</a>.</p>
+{% endif %}
+{% endblock %}

@@ -1,0 +1,22 @@
+{% extends '_base.html' %}
+
+{% block content %}
+<h2>Playlist: {{ playlist.title }}</h2>
+<p>Created on: {{ playlist.created_at|date:"F j, Y" }}</p>
+
+{% if playlist.playlistitem_set.all %}
+    <ul>
+        {% for item in playlist.playlistitem_set.all %}
+        <li>
+            <a href="{{ item.video.url }}">{{ item.video.title }}</a>
+            <p>{{ item.video.description }}</p>
+            <p>Added on: {{ item.added_at|date:"F j, Y" }}</p>
+        </li>
+        {% endfor %}
+    </ul>
+{% else %}
+    <p>This playlist is empty.</p>
+{% endif %}
+
+<a href="{% url 'playlist_list' %}">Back to Playlists</a>
+{% endblock %}
