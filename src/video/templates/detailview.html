@@ -160,8 +160,10 @@
                                 <li>
                                     <label>
                                         <input type="checkbox" id="watch-later-checkbox" data-video-id="{{ video.id }}"
-                                            data-ch-name="{{ video.channel }}" {% if video.id in watch_later_videos %}
-                                            checked {% endif %}>
+                                            
+                                             {% if video.id in watch_later_videos %}
+                                            checked
+                                             {% endif %}>
                                         Watch Later
                                     </label>
                                 </li>

@@ -26,6 +26,7 @@ document.addEventListener('DOMContentLoaded', function() {
             const playlistId = this.value;
             const videoId = this.dataset.videoId;
             const csrfToken = document.querySelector('[name=csrfmiddlewaretoken]').value;
+            console.log(csrfToken);
 
             const formData = new FormData();
             formData.append('playlist', playlistId);
@@ -59,3 +60,43 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
 });
+
+
+// check-box Watch-Later
+document.addEventListener('DOMContentLoaded', function() {
+    const watchLaterCheckbox = document.getElementById('watch-later-checkbox');
+    
+    if (watchLaterCheckbox) {
+        watchLaterCheckbox.addEventListener('change', function() {
+            const videoId = this.dataset.videoId;
+            
+            const csrfToken = document.querySelector('[name=csrfmiddlewaretoken]').value;
+            
+
+            const formData = new FormData();
+            formData.append('action', this.checked ? 'add' : 'remove');
+            fetch(`/watch-later/add/${videoId}/`, {
+                method: 'POST',
+                headers: {
+                    'X-CSRFToken': csrfToken
+                },
+                body: formData
+            })
+            .then(response => response.json())
+            .then(data => {console.log(data);
+                if (data.success) {
+                    alert(`Video ${data.action === 'added' ? 'added to' : 'removed from'} Watch Later!`);
+                } else {
+                    alert(`Failed to ${this.checked ? 'add' : 'remove'} video from Watch Later: ${data.error}`);
+                }
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                alert('An error occurred. Please try again.');
+            });
+        });
+    }
+
+});
+
+console.log('aiiiiiiaooooooo');

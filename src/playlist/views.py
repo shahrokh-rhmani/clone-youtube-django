@@ -2,8 +2,9 @@ from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth.decorators import login_required
 from django.http import JsonResponse
 from video.models import Video
-from .models import Playlist, PlaylistItem
+from .models import Playlist, PlaylistItem, WatchLater
 from .forms import PlaylistForm, PlaylistItemForm
+from studio.models import Channel
 
 
 @login_required
@@ -55,3 +56,34 @@ def add_to_playlist(request, video_id):
                 return JsonResponse({'success': False, 'error': 'Video not in playlist'}, status=400)
     else:
         return JsonResponse({'error': 'Invalid request method'}, status=405)
+    
+
+@login_required
+def watch_later_list(request):
+    watch_later_items = WatchLater.objects.filter(channel__user=request.user)
+    return render(request, 'watch_later_list.html', {'watch_later_items': watch_later_items})
+
+
+@login_required
+def add_to_watch_later(request, video_id):
+    video = get_object_or_404(Video, id=video_id)
+    channel = Channel.objects.get(user=request.user)
+    
+    if request.method == 'POST':
+        action = request.POST.get('action')
+        if action == 'add':
+            watch_later_item, created = WatchLater.objects.get_or_create(channel=channel, video=video)
+            if created:
+                return JsonResponse({'success': True, 'action': 'added'})
+            else:
+                return JsonResponse({'success': False, 'error': 'Video already in watch later list'}, status=400)
+        elif action == 'remove':
+            watch_later_item = WatchLater.objects.filter(channel=channel, video=video).first()
+            if watch_later_item:
+                watch_later_item.delete()
+                return JsonResponse({'success': True, 'action': 'removed'})
+            else:
+                return JsonResponse({'success': False, 'error': 'Video not in watch later list'}, status=400)
+    else:
+        return JsonResponse({'error': 'Invalid request method'}, status=405)
+

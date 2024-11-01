@@ -1,7 +1,7 @@
 from django.shortcuts import render, get_object_or_404
 from studio.models import Channel
 from interaction.models import Like, Dislike
-from playlist.models import Playlist, PlaylistItem
+from playlist.models import Playlist, PlaylistItem, WatchLater
 from .models import Video
 from django.http import HttpResponseNotFound
 
@@ -22,6 +22,7 @@ def detailview(request, ch_name, video_id):
     user_disliked = Dislike.objects.filter(user=request.user, video=video).exists()
     user_playlists = Playlist.objects.filter(channel__user=request.user)
     playlistitem = PlaylistItem.objects.filter(video=video_id).values_list('playlist_id', flat=True)
+    user_watch_later = WatchLater.objects.filter(channel__user=request.user).values_list('video_id', flat=True)
 
     if not Channel.objects.filter(channel_name=ch_name).exists():
         return HttpResponseNotFound("Channel does not exist")
@@ -32,5 +33,6 @@ def detailview(request, ch_name, video_id):
         'user_disliked': user_disliked,
         'playlists': user_playlists,
         'playlistitem': playlistitem,
+        'watch_later_videos': user_watch_later,
     }
     return render(request, 'detailview.html', context)

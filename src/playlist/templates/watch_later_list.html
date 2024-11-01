@@ -1,0 +1,10 @@
+{% extends '_base.html' %}
+
+{% block content %}
+<h2>Watch Later</h2>
+<ul>
+    {% for item in watch_later_items %}
+    <li>{{ item.video.title }}</li>
+    {% endfor %}
+</ul>
+{% endblock %}

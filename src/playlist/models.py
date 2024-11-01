@@ -25,4 +25,17 @@ class PlaylistItem(models.Model):
 
     def __str__(self):
         return f'{self.playlist.title} - {self.video.title}'
+    
+
+class WatchLater(models.Model):
+    channel = models.ForeignKey(Channel, on_delete=models.CASCADE)
+    video = models.ForeignKey(Video, on_delete=models.CASCADE)
+    added_at = models.DateTimeField(auto_now_add=True)
+    
+    class Meta:
+        unique_together = ('channel', 'video')
+        
+    def __str__(self):
+        return f'{self.channel.channel_name} - {self.video.title}'
+
 
