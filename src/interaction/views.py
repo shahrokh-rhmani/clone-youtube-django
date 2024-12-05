@@ -28,3 +28,31 @@ def dislikeview(request, video_id):
         dislike.delete()
     
     return redirect(request.META.get('HTTP_REFERER', 'detailview'))
+
+
+from django.http import JsonResponse
+from django.shortcuts import get_object_or_404
+from .models import Comment, Video
+
+
+def comment_view(request):
+    if request.method == 'POST':
+        video_id = request.POST.get('video', False)
+        comment_text = request.POST.get('text', False)
+        parent_id = request.POST.get('parent', False)
+
+        if not video_id or not comment_text:
+            return JsonResponse({'bool': False, 'error': 'Video ID and text are required.'}, status=400)
+
+        parent_comment = get_object_or_404(Comment, id=parent_id) if parent_id else None
+
+        Comment.objects.create(
+            video_id=video_id,
+            user=request.user,
+            text=comment_text,
+            parent=parent_comment
+        )
+        
+        return JsonResponse({'bool': True})
+    else:
+        return JsonResponse({'bool': False, 'error': 'Invalid request method.'}, status=405)
