@@ -1,11 +1,14 @@
+# Django core imports
 from django.shortcuts import render, get_object_or_404
+from django.http import HttpResponseNotFound, JsonResponse
+
+# Application-specific imports
 from studio.models import Channel
 from interaction.models import Like, Dislike, Comment
 from interaction.forms import CommentForm
 from playlist.models import Playlist, PlaylistItem, WatchLater
 from .models import Video
 
-from django.http import HttpResponseNotFound
 
 
 def listview(request):
@@ -41,3 +44,25 @@ def detailview(request, ch_name, video_id):
         'form': CommentForm(),
     }
     return render(request, 'detailview.html', context)
+
+
+
+def search(request):
+    query = request.GET.get('q')
+    if query:
+        search_results = Video.objects.filter(title__icontains=query)
+    else:
+        search_results = Video.objects.none()
+
+    results = []
+    for video in search_results:
+        image_url = video.img.url if video.img else '/static/images/thumbnail.jpg'
+        results.append({
+            'id': video.id,
+            'title': video.title,
+            'url': video.get_absolute_url(),
+            'image_url': image_url 
+        })
+    
+
+    return JsonResponse({'search_results': results})

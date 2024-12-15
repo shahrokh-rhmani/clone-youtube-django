@@ -1,6 +1,7 @@
 from PIL import Image
 from django.db import models
 from studio.models import Channel
+from django.urls import reverse
 
 
 class Video(models.Model):
@@ -14,6 +15,9 @@ class Video(models.Model):
 
     def __str__(self):
         return self.title
+    
+    def get_absolute_url(self):
+        return reverse('detailview', kwargs={'ch_name': self.channel.channel_name, 'video_id': self.id})
     
     def save(self, *args, **kwargs):
         super().save(*args, **kwargs)
