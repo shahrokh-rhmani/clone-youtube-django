@@ -6,7 +6,7 @@
 {% block content %}
 {% for video in most_recent_videos %}
 <div class="col-12 col-md-6 col-lg-4 col-xl-3">
-    <a href="{% url 'detailview' ch_name=video.channel video_id=video.id %}" class="card card-video border-0 bg-transparent mb-4">
+    <a href="{{ video.get_absolute_url }}" class="card card-video border-0 bg-transparent mb-4">
         {% if video.img %}
             <img src="{{ video.img.url }}" class="img-fluid" alt="{{ video.title }}">
         {% else %}
