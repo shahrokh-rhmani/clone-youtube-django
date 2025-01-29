@@ -1,7 +1,10 @@
-from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth.decorators import login_required
+from django.http import JsonResponse
+from django.shortcuts import get_object_or_404, redirect, render
+
 from video.models import Video
-from .models import Like, Dislike
+from .models import Comment, Dislike, Like
+
 
 
 @login_required
@@ -28,11 +31,6 @@ def dislikeview(request, video_id):
         dislike.delete()
     
     return redirect(request.META.get('HTTP_REFERER', 'detailview'))
-
-
-from django.http import JsonResponse
-from django.shortcuts import get_object_or_404
-from .models import Comment, Video
 
 
 def comment_view(request):
